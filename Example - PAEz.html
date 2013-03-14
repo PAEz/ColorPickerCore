@@ -1,0 +1,54 @@
+<HTML>
+	<head>
+		<script src="Colour.js"></script>
+		<script src="CPC.js"></script>
+
+		<script type="text/javascript">
+			parseColor = function (evt) {
+				console.log(evt)
+				cpc.color.css=evt.target.value;
+			}
+			onUpdate = function() {
+				rgbText.innerText=this.color.rgb.css;
+				hslText.innerText=this.color.hsl.css;
+			}
+			onLoad = function () {
+				rgbText=document.querySelector('#rangetextrgbval');
+				hslText=document.querySelector('#rangetexthslval');
+				parseInput=document.querySelector('#inputParseColor');
+				cpc=new CPC(null,{
+					onUpdate:onUpdate
+				});
+				parseInput.onkeyup = parseColor;
+			}
+			window.onload=onLoad;
+		</script>
+	</head>
+	<body style="background-color:#888">
+		<div class="picex">
+
+			<canvas width="255" height="255" data-cpc_hsvwell style="float:left"></canvas>
+			<canvas width="32" height="255" data-cpc_colorwell data-cpc_colorwell_split style="margin-left:20px"></canvas>
+			<canvas width="32" height="255" data-cpc_huewell style="margin-left:10px"></canvas>
+			<canvas width="32" height="255" data-cpc_saturationwell style="margin-left:10px"></canvas>
+			<canvas width="32" height="255" data-cpc_lightnesswell style="margin-left:10px"></canvas>
+			<canvas width="32" height="255" data-cpc_alphawell style="margin-left:10px"></canvas>
+		
+
+			<p  style="clear:left"></p>
+			<canvas width="255" height="32" data-cpc_colorwell  data-cpc_colorwell_alpha></canvas><p></p>
+			<canvas width="255" height="32" data-cpc_huewell></canvas><p></p>
+			<canvas width="255" height="32" data-cpc_saturationwell></canvas><p></p>
+			<canvas width="255" height="32" data-cpc_lightnesswell></canvas><p></p>
+			<canvas width="255" height="32" data-cpc_alphawell></canvas><p></p>
+
+			RGB: <div id="rangetextrgbval" ></div>
+			HSL: <div id="rangetexthslval" ></div>
+			<br />
+
+			Parse Color: <input type="text" id="inputParseColor" value="rgb(255,0,0)"/><br />
+		</div>
+
+	</body>
+</HTML>
+
